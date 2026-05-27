@@ -3,6 +3,8 @@ const cors = require("cors");
 require("dotenv").config();
 const connectDB = require("./config/db.js");
 const authRoutes = require("./routes/authRoutes.js");
+const jobRoutes = require("./routes/jobRoutes.js");
+
 
 const port = process.env.PORT || 5000;
 const app = express();
@@ -19,11 +21,13 @@ app.use(cors({
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/jobs", jobRoutes);
 
 // Test Route
 app.get("/", (req, res) => {
     res.json({message: "Welcome to Job Tracker"});
 })
+
 
 const startServer = async() => {
     await connectDB();
