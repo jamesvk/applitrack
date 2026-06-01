@@ -4,7 +4,7 @@ const protect = async (req, res, next) => {
     const authHeader = req.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
-        return res.status(401).json({message: "No toekn, not authorized"})
+        return res.status(401).json({message: "No token, not authorized"})
     }
 
     const token = authHeader.split(" ")[1];
@@ -14,7 +14,7 @@ const protect = async (req, res, next) => {
             req.user = decoded;
             next();
         } else {
-            return res.status(401).json({message: "Not authorized, invalide token"})
+            return res.status(401).json({message: "Not authorized, invalid token"})
         }
     })
 }

@@ -1,21 +1,19 @@
-import {useState} from "react"
+import {useState, useContext} from "react"
 import axios from "axios"
-import {useNavigate} from "react-router-dom"
+import { AuthContext } from "../context/AuthContext";
 
 function Register() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    const navigate = useNavigate();
+    const {login} = useContext(AuthContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
             const {data} = await axios.post("http://localhost:5000/api/auth/register", {name, email, password})
-            localStorage.setItem("token", data.accessToken)
-            navigate("/dashboard");
+            login(data);
         } catch (error) {
             console.log(error.response?.data?.message || "Something went wrong");
         }
