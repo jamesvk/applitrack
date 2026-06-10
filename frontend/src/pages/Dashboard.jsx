@@ -105,6 +105,7 @@ function Dashboard() {
                 {showForm && (
                     <div className="mb-6">
                         <JobForm
+                            key={selectedJob?._id || "new"}
                             setJobs={setJobs}
                             setShowForm={setShowForm}
                             job={selectedJob}
