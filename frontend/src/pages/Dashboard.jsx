@@ -27,7 +27,7 @@ function Dashboard() {
         const fetchJobs = async () => {
             try {
                 const { data } = await axios.get(
-                    "http://localhost:5000/api/jobs",
+                    `${import.meta.env.VITE_API_URL}/api/jobs`,
                     {
                         headers: { Authorization: `Bearer ${token}` },
                     }
@@ -55,9 +55,12 @@ function Dashboard() {
         if (!confirmed) return;
 
         try {
-            await axios.delete(`http://localhost:5000/api/jobs/${job._id}`, {
-                headers: { Authorization: `Bearer ${token}` },
-            });
+            await axios.delete(
+                `${import.meta.env.VITE_API_URL}/api/jobs/${job._id}`,
+                {
+                    headers: { Authorization: `Bearer ${token}` },
+                }
+            );
             setJobs((prev) => prev.filter((j) => j._id !== job._id));
         } catch (error) {
             alert(

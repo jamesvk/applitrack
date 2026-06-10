@@ -21,7 +21,7 @@ function JobForm({ setJobs, setShowForm, job }) {
         try {
             if (job) {
                 const { data } = await axios.put(
-                    `http://localhost:5000/api/jobs/${job._id}`,
+                    `${import.meta.env.VITE_API_URL}/api/jobs/${job._id}`,
                     {
                         company,
                         role,
@@ -38,7 +38,7 @@ function JobForm({ setJobs, setShowForm, job }) {
                 );
             } else {
                 const { data } = await axios.post(
-                    "http://localhost:5000/api/jobs",
+                    `${import.meta.env.VITE_API_URL}/api/jobs`,
                     {
                         company,
                         role,
