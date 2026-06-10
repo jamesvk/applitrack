@@ -54,7 +54,7 @@ async function updateJob(req, res) {
                 new: true,
             }
         );
-        return res.status(200).json(job);
+        return res.status(200).json(updatedJob);
     } catch (err) {
         return res.status(500).json({ message: err.message });
     }
