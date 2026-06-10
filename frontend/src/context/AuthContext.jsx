@@ -3,34 +3,47 @@ import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
-function AuthProvider({children}) {
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")) || null);
+function AuthProvider({ children }) {
+    const [user, setUser] = useState(() => {
+        try {
+            return JSON.parse(localStorage.getItem("user")) || null;
+        } catch {
+            return null;
+        }
+    });
     const [token, setToken] = useState(localStorage.getItem("token") || null);
 
     const navigate = useNavigate();
 
     const login = (data) => {
-        setUser({_id: data._id, name: data.name, email: data.email});
+        setUser({ _id: data._id, name: data.name, email: data.email });
         setToken(data.accessToken);
-        localStorage.setItem("user", JSON.stringify({_id: data._id, name: data.name, email: data.email}))
-        localStorage.setItem("token", data.accessToken)
-        navigate("/dashboard")
-    }
+        localStorage.setItem(
+            "user",
+            JSON.stringify({
+                _id: data._id,
+                name: data.name,
+                email: data.email,
+            })
+        );
+        localStorage.setItem("token", data.accessToken);
+        navigate("/dashboard");
+    };
 
     const logout = () => {
         setUser(null);
         setToken(null);
-        localStorage.removeItem("user")
+        localStorage.removeItem("user");
         localStorage.removeItem("token");
         navigate("/login");
-    }
+    };
 
     return (
-        <AuthContext.Provider value={{user, token, login, logout}}>
+        <AuthContext.Provider value={{ user, token, login, logout }}>
             {children}
         </AuthContext.Provider>
-    )
+    );
 }
 
-export {AuthContext}
-export default AuthProvider
+export { AuthContext };
+export default AuthProvider;
