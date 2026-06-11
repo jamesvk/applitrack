@@ -41,6 +41,7 @@ Vite – Frontend build tool and development server for a fast development exper
 Deployment
 Render – Cloud platform used to deploy the backend API.
 Vercel – Cloud platform used to deploy the frontend application.
+Resend - Email delivery service used to send application-related notifications and alerts to users.
 
 ## Features
 
@@ -68,7 +69,7 @@ Backend setup
 
 - cd backend
 - npm install
-- create .env file with MONGO_URI, JWT_SECRET, PORT
+- create .env file with MONGO_URI, JWT_SECRET, PORT , RESEND_API_KEY
 - npm run dev
 
 Frontend setup
