@@ -1,4 +1,5 @@
 const Job = require("../models/JobApplication.js");
+const sendEmail = require("../utils/sendEmail.js");
 
 async function getJobs(req, res) {
     try {
@@ -54,6 +55,26 @@ async function updateJob(req, res) {
                 new: true,
             }
         );
+
+        // Send email if status changed to Interviewing, Offered, or Rejected
+        const notifyStatuses = ["Interviewing", "Offered", "Rejected"];
+        if (
+            req.body.status &&
+            req.body.status !== job.status &&
+            notifyStatuses.includes(req.body.status)
+        ) {
+            try {
+                await sendEmail({
+                    to: process.env.EMAIL_USER, // sending to app email for now
+                    subject: `AppliTrack — Status Update: ${updatedJob.company}`,
+                    text: `Your application for ${updatedJob.role} at ${updatedJob.company} has been updated to: ${updatedJob.status}.`,
+                });
+            } catch (emailError) {
+                console.error("Email failed:", emailError.message);
+                // Don't fail the request if email fails
+            }
+        }
+
         return res.status(200).json(updatedJob);
     } catch (err) {
         return res.status(500).json({ message: err.message });
