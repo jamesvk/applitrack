@@ -1,90 +1,138 @@
-# Applitrack
+# AppliTrack
 
-This full-stack MERN application helps job seekers track and manage their employment applications in one place. Users can organize applications by status and add notes to keep important details readily accessible.
+**AppliTrack** is a full-stack MERN application that helps job seekers organize, track, and manage their job applications in one place.
 
 **Live Demo:** [applitrack-khaki.vercel.app](https://applitrack-khaki.vercel.app)
+⚠️ The backend is hosted on Render's free tier and may take 30–60 seconds to wake up after a period of inactivity. Please allow a moment for the server to respond on first load.
 
-## Screenshot
+---
 
-![AppliTrack Landing](assets/Landing.png)
+## Screenshots
 
-![AppliTrack Login](assets/Login.png)
+| Login                        | Dashboard                            | Email Notification                                     |
+| ---------------------------- | ------------------------------------ | ------------------------------------------------------ |
+| ![Login](./assets/Login.png) | ![Dashboard](./assets/Dashboard.png) | ![Email Notification](./assets/Email_Notification.png) |
 
-![AppliTrack Dashboard](assets/Dashboard.png)
+---
 
 ## About
 
-I built this application to solve a real problem I expect to face during my upcoming software engineering job search. Keeping track of applications, interview stages, and important notes can quickly become difficult, so I wanted a centralized tool to stay organized. This project also serves as a portfolio piece that demonstrates my ability to design, build, and deploy a full-stack MERN application using modern web development practices.
+I built AppliTrack to solve a problem I knew I would face during my software engineering job search. Managing job applications across spreadsheets, emails, and browser tabs is messy — I wanted a single, purpose-built tool to stay organized. This project also serves as a portfolio piece demonstrating my ability to design, build, and deploy a complete full-stack application with real-world features like JWT authentication and transactional email notifications.
+
+---
 
 ## Tech Stack
 
-Backend
-Node.js – JavaScript runtime used to run the backend server.
-Express.js – Handles API routes, middleware, and business logic.
-dotenv – Manages environment variables and application secrets.
-CORS – Enables secure communication between the frontend and backend running on different origins.
+**Backend**
 
-Database
-MongoDB – Stores user accounts and job application data.
-Mongoose – Provides schema modeling and database interaction for MongoDB.
+- **Node.js** — JavaScript runtime for the server-side application.
+- **Express** — Handles API routing, middleware, and request processing.
+- **dotenv** — Loads environment variables from `.env` files to keep secrets out of source code.
+- **CORS** — Configures cross-origin policies so the frontend and backend can communicate across different domains.
 
-Authentication & Security
-JSON Web Token (JWT) – Implements secure, stateless authentication for protected routes.
-bcryptjs – Hashes user passwords before they are stored in the database.
+**Database**
 
-Frontend
-React – Builds the user interface and manages application state.
-Axios – Handles HTTP requests between the frontend and backend APIs.
-Tailwind CSS – Utility-first CSS framework used for responsive styling.
-Vite – Frontend build tool and development server for a fast development experience.
+- **MongoDB Atlas** — Cloud-hosted NoSQL database for storing users and job application records.
+- **Mongoose** — Schema-based ODM that structures and validates MongoDB documents.
 
-Deployment
-Render – Cloud platform used to deploy the backend API.
-Vercel – Cloud platform used to deploy the frontend application.
-Resend - Email delivery service used to send application-related notifications and alerts to users.
+**Auth & Security**
+
+- **JWT** — Issues signed tokens for stateless, secure user authentication on protected routes.
+- **bcryptjs** — Hashes passwords before storage so plaintext credentials are never persisted.
+- **Resend** — Transactional email service that delivers status-change notifications to users.
+
+**Frontend**
+
+- **React** — Component-based UI library for building the interactive dashboard.
+- **Vite** — Fast build tool and development server with hot module replacement.
+- **Tailwind CSS** — Utility-first CSS framework for responsive, consistent styling.
+- **Context API** — Manages global authentication state without a third-party library.
+
+**Deployment**
+
+- **Render** — Hosts the Express backend API.
+- **Vercel** — Hosts the React frontend with automatic deployments from Git.
+
+---
 
 ## Features
 
 - Secure user registration and login with JWT authentication
-- Protected routes and user-specific data access
-- Create, view, update, and delete job applications
-- Track application progress through customizable statuses
-- Add notes for interviews, recruiters, and follow-up actions
-- Filter applications by status with live application counts
-- Responsive design for desktop, tablet, and mobile devices
-- Email notifications when application status changes to Interviewing, Offered, or Rejected
+- Full job application CRUD — create, view, edit, and delete entries
+- Status management to track where each application stands
+- Email notifications via Resend when an application moves to Interviewing, Offered, or Rejected
+- Filter applications by status with live counts per category
+- Responsive design across desktop, tablet, and mobile
 
-## Getting Started (How to run locally)
+---
 
-Prerequisites
+## Getting Started
 
-- Node.js
+### Prerequisites
+
+- Node.js v18+
 - MongoDB Atlas account
+- Resend account (for email notifications)
 
-Clone the repo
+### Clone the repo
 
-- git clone https://github.com/jamesvk/applitrack.git
+```bash
+git clone https://github.com/jamesvk/applitrack.git
+cd applitrack
+```
 
-Backend setup
+### Backend setup
 
-- cd backend
-- npm install
-- create .env file with MONGO_URI, JWT_SECRET, PORT , RESEND_API_KEY
-- npm run dev
+```bash
+cd backend
+npm install
+```
 
-Frontend setup
+Create a `.env` file in the `backend` directory:
 
-- cd frontend
-- npm install
-- create .env with VITE_API_URL
-- npm run dev
+```env
+PORT=5000
+MONGO_URI=your_mongodb_atlas_connection_string
+JWT_SECRET=your_jwt_secret
+NODE_ENV=development
+CLIENT_URL=http://localhost:5173
+RESEND_API_KEY=your_resend_api_key
+FROM_EMAIL=your_verified_sender@example.com
+```
 
-## Challenges
+```bash
+npm run dev
+```
 
-The biggest challenge was understanding the full flow of data throughout the application as more features were added. With multiple technologies working together, it was sometimes difficult to keep track of how requests, responses, and data moved between the frontend, backend, and database. Similar syntax across different libraries and frameworks also added to the learning curve. I overcame this by breaking the project into smaller pieces, focusing on one concept at a time, and revisiting earlier topics when needed to reinforce my understanding as the codebase grew.
+### Frontend setup
+
+```bash
+cd frontend
+npm install
+```
+
+Create a `.env` file in the `frontend` directory:
+
+```env
+VITE_API_URL=http://localhost:5000
+```
+
+```bash
+npm run dev
+```
+
+---
 
 ## Future Improvements
 
-- HTTP-only cookies for JWT storage instead of localStorage
-- Token refresh mechanism
-- Password reset functionality
+- Mobile app for tracking applications on the go
+- Calendar integration to surface upcoming interviews and deadlines
+- Interview prep notes linked directly to each application
+- Analytics dashboard with charts for application volume and conversion rates
+
+---
+
+## Author
+
+**James Kim**
+GitHub: [github.com/jamesvk](https://github.com/jamesvk)
