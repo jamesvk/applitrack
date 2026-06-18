@@ -1,11 +1,9 @@
 # AppliTrack
 
-**AppliTrack** is a full-stack MERN application that helps job seekers organize, track, and manage their job applications in one place.
+AppliTrack is a full-stack MERN application that helps job seekers organize, track, and manage their job applications in one place.
 
 **Live Demo:** [applitrack-khaki.vercel.app](https://applitrack-khaki.vercel.app)
 ⚠️ The backend is hosted on Render's free tier and may take 30–60 seconds to wake up after a period of inactivity. Please allow a moment for the server to respond on first load.
-
----
 
 ## Screenshots
 
@@ -13,13 +11,9 @@
 | ---------------------------- | ------------------------------------ | ------------------------------------------------------ |
 | ![Login](./assets/Login.png) | ![Dashboard](./assets/Dashboard.png) | ![Email Notification](./assets/Email_Notification.png) |
 
----
-
 ## About
 
 I built AppliTrack to solve a problem I knew I would face during my software engineering job search. Managing job applications across spreadsheets, emails, and browser tabs is messy — I wanted a single, purpose-built tool to stay organized. This project also serves as a portfolio piece demonstrating my ability to design, build, and deploy a complete full-stack application with real-world features like JWT authentication and transactional email notifications.
-
----
 
 ## Tech Stack
 
@@ -53,8 +47,6 @@ I built AppliTrack to solve a problem I knew I would face during my software eng
 - **Render** — Hosts the Express backend API.
 - **Vercel** — Hosts the React frontend with automatic deployments from Git.
 
----
-
 ## Features
 
 - Secure user registration and login with JWT authentication
@@ -63,8 +55,6 @@ I built AppliTrack to solve a problem I knew I would face during my software eng
 - Email notifications via Resend when an application moves to Interviewing, Offered, or Rejected
 - Filter applications by status with live counts per category
 - Responsive design across desktop, tablet, and mobile
-
----
 
 ## Getting Started
 
@@ -121,8 +111,6 @@ VITE_API_URL=http://localhost:5000
 npm run dev
 ```
 
----
-
 ## Future Improvements
 
 - Mobile app for tracking applications on the go
@@ -130,9 +118,6 @@ npm run dev
 - Interview prep notes linked directly to each application
 - Analytics dashboard with charts for application volume and conversion rates
 
----
-
 ## Author
 
-**James Kim**
-GitHub: [github.com/jamesvk](https://github.com/jamesvk)
+James Kim — [GitHub](https://github.com/jamesvk)
